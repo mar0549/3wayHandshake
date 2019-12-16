@@ -1,0 +1,41 @@
+The client program must be ran on the cse02 machine
+
+The server must be ran on the cse01 machine
+
+The following server and client programs display a 3 way handshake and closing of a TCP connection
+
+compile the client accordingly...
+	gcc -o client client.c
+
+compile the server accordingly...
+	gcc -o server pserver.c
+
+to run the server(must be ran first) type ./server <portno>
+
+to run the client, type ./client <portno>
+
+
+for both codes, there is a structure called tcp_hdr that holds parts of the tcp header.
+So for example is holds the source number, destination number, sequence number etc...
+
+
+When ran, the client sets up its header and sends the request to the server.
+
+The server checks this header, changes its ack number and set the sequence number and sends the response to the client
+
+The client then sends another the structure back to the server to complete the 3 way handshake
+
+
+For closing, the client sends its header with the FIN flag set
+
+The server reads in the header and sends an ack and a fin flag
+
+Once the client receives both, it sends its header to the server and closes its connection
+
+onces the server receives this header, it closes it's connection
+
+
+
+All transmissions and received headers are stored in client.out and server.out respectively.
+The header information is displayed and titled if it is trasmitted or received
+
